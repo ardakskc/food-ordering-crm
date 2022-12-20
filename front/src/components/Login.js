@@ -31,6 +31,15 @@ class Login extends Component {
         
     }
 
+    const LogIn = () => {
+        const [username, setUsername] = React.useState('');
+        const [password, setPassword] = React.useState('');
+        const logIn = () => {
+            console.warn(username, password);
+            let result = fetch()
+        }
+    }
+
     render() {
         const {username, password} = this.state;
         return (
@@ -62,7 +71,7 @@ class Login extends Component {
                                 onChange = {this.onPasswordChange.bind(this)}
                                 />
                         </div>
-                        <button type="submit" className="btn btn-danger btn-lg">Log In</button>
+                        <button type="submit" className="btn btn-danger btn-lg" onClick={logIn}>Log In</button>
                     </form>
                 </div>
             </div>
