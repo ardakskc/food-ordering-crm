@@ -10,7 +10,7 @@ const authRoute = require('./routers/authRoute');
 const app = express();
 
 mongoose
-  .connect('mongodb://localhost:27017/YemekSepetiDB', {
+  .connect('mongodb://127.0.0.1:27017/YemekSepetiDB', {
     useNewUrlParser: true,
   })
   .then(() => {
@@ -35,7 +35,7 @@ app.use(session({
 // app.use('/users', userRoute);
 app.use('/auth',authRoute);
 
-const port = 3000;
+const port = 5000;
 app.listen(port, () => {
   console.log(`App started on port ${port}`);
 });
