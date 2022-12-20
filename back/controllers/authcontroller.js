@@ -23,7 +23,7 @@ exports.login = async (req, res, next) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username: username });
   if (!user) {
-    return next(new CustomError('Pleaase Check Your username', 400));
+    return next(new CustomError('Please Check Your username', 400));
   }
   bcrypt.compare(password, user.password, (err, result) => {
     if (result) {
