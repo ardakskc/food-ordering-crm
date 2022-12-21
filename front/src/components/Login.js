@@ -34,31 +34,39 @@ class Login extends Component {
         
     }
 
-    LogIn = (e) => {
+    logIn = (e) => {
+        /*const [username, setUsername] = React.useState('');
+        const [password, setPassword] = React.useState('');*/
+        this.setState({
+            username: e.target.value,
+            password: e.target.value
+        });
         e.preventDefault();
+        
         var proxy = "http://localhost:5000/auth/login"
         //console.warn(username, password);
         console.log(this.state.username+this.state.password)
+        let request = { 
+            username: this.state.username,
+            password: this.state.password
+        };
         const headers = { 
 
                 'Accept': 'application.json',
                 'Content-Type': 'application/json'
         
         };
-        axios.post(proxy, {
-            username: this.state.username,
-            password: this.state.password
-          },{headers})
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        let result = fetch(proxy, {
+            method: "post",
+            headers: headers,
+            body:JSON.stringify(request)
+        }).then((response) => response.json())
+        .then(json => console.log("request:", request, ", response:", json))
+        .then((data) => console.log(data))
+        .catch((err) => {
+            console.log(err);
+        });
     
-        const [username, setUsername] = React.useState('');
-        const [password, setPassword] = React.useState('');
-        
     }
 
     render() {
@@ -92,7 +100,7 @@ class Login extends Component {
                                 onChange = {this.onPasswordChange.bind(this)}
                                 />
                         </div>
-                        <button type="submit" className="btn btn-danger btn-lg" onClick={this.LogIn.bind(this)}>Log In</button>
+                        <button type="submit" className="btn btn-danger btn-lg" onClick={this.logIn.bind(this)}>Log In</button>
                     </form>
                 </div>
             </div>
