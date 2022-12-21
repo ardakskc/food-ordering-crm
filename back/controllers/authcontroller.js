@@ -21,8 +21,10 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res, next) => {
   const { username, password } = req.body;
+  console.log(req.body);
   const user = await User.findOne({ username: username });
   if (!user) {
+    res.send('Please Check Your username');
     return next(new CustomError('Please Check Your username', 400));
   }
   bcrypt.compare(password, user.password, (err, result) => {
@@ -37,9 +39,11 @@ exports.login = async (req, res, next) => {
         },
       });
     } else {
+      res.send('Please Check your password')
       return next(new CustomError('Please Check your password', 400));
     }
   });
+
 };
 
 exports.logout = async (req, res, next) => {
