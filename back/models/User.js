@@ -27,21 +27,20 @@ const UserSchema = new Schema({
   },
   gender: {
     type: String,
-    required: [true, 'Please provide a password'],
+    required: [true, 'Please provide a gender'],
   },
   phone_number: {
     type: String,
-    required: [true, 'Please provide a password'],
+    required: [true, 'Please provide a phone_number'],
   },
   id: {
     type: String,
-    required: [true, 'Please provide a password'],
+    required: [true, 'Please provide a id'],
   },
-
-//   orders:[ {
-//     type: Schema.Types.ObjectId,
-//     ref: 'Movie',
-//   }],
+  // orders:[{
+  //   amount:{type:Number, required: [true, 'Please provide a id']},
+  //   food:{type:Schema.Types.ObjectId,ref:"Food"}
+  // }]
 });
 
 UserSchema.pre('save', function(next) {
