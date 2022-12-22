@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import axios from "axios"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 class Login extends Component {
 
@@ -63,6 +63,7 @@ class Login extends Component {
         }).then((response) => response.json())
         .then(json => console.log("request:", request, ", response:", json))
         .then((data) => console.log(data))
+        .then(window.location.href = "/itemlist")
         .catch((err) => {
             console.log(err);
         });
