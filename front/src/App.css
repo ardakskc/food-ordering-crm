@@ -63,6 +63,12 @@
   margin-bottom: 0px;
   text-align:center;
 }
+.card--div-button:hover{
+  background-color: black;
+  color:  rgb(255, 132, 0);
+  transition-delay: 0.1s;
+  transition-duration: 1s;
+}
 
 .card--div-button-selected{
   width: 112px;
