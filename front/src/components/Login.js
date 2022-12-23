@@ -83,7 +83,7 @@ class Login extends Component {
                 <div className="bg-red-500 relative shadow-lg w-full py-20 flex items-center text-white text-2xl justify-between">
                     <img className="w-full h-full object-cover absolute top-0 opacity-20" src={Food}/>
                     <a className="z-10 px-20 hover:no-underline hover:text-white font-bold" href="/">Yemeksepeti</a>
-                    <a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/">Kayıt Ol</a>
+                    <a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/register">Kayıt Ol</a>
                 </div>
                 <div className=" items-center justify-center flex flex-col gap-y-5 rounded-lg bg-white p-16 border-2 border-[#d43d3d]">
                 <span className="card-reader items-center justify-center font-bold text-[#d43d3d] border-b border-[#d43d3d] w-full text-center">Giriş Yap</span>

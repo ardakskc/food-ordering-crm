@@ -76,7 +76,7 @@ class Payment extends Component {
                         <p>_________{name}: {price} tl</p>
                         {this.state.showLoyalty && <p>_________Loyalty Card Discount: {loyalty} tl</p>}
                         {this.state.showLoyalty ? <p>_________Total: {Number(price) - Number(loyalty)} tl</p> : <p>_________Total: {price} tl</p>}
-                        <button className="button2" onClick={this.onPayButtonClickHandler.bind(this)}>
+                        <button className="button2 mt-10" onClick={this.onPayButtonClickHandler.bind(this)}>
                             Pay
                         </button>
                     </div>
