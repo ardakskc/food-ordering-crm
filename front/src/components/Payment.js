@@ -8,12 +8,13 @@ class Payment extends Component {
         this.state = {
             food_obj:JSON.parse(localStorage.getItem("obj")),
             name: JSON.parse(localStorage.getItem("obj")).menu_name,
-            id: JSON.parse(localStorage.getItem("obj")).menu_id,
+            id: JSON.parse(localStorage.getItem("obj"))._id,
             price: JSON.parse(localStorage.getItem("obj")).price,
             img: this.props.img,
             count: 1,
             loyalty: localStorage.getItem("loyalty_card"),
-            showLoyalty: false
+            showLoyalty: false,
+            userID:localStorage.getItem("session_userID")
         };
     }
 
@@ -21,11 +22,52 @@ class Payment extends Component {
         this.setState({showLoyalty: !this.state.showLoyalty});
     };
 
-    onPayButtonClickHandler = () => {
+    onPayButtonClickHandler = (e) => {
+        
+        e.preventDefault();
+        
+        var proxy = "http://localhost:5000/foods/payment"
+
+        let request = { 
+            menu_id:this.state.id,
+            count:this.state.count,
+            price:this.state.price,
+            loyalty:this.state.showLoyalty,
+            userID:this.state.userID
+        };
+        const headers = { 
+                'Accept': 'application.json',
+                'Content-Type': 'application/json'
+        
+        };
+        let result = fetch(proxy, {
+            method: "post",
+            headers: headers,
+            body:JSON.stringify(request)
+        }).then((response) => response.json())
+        .then(json => {
+            if(json.status == 'success'){
+                localStorage.setItem("loyalty_card",JSON.stringify(json.loyalty))
+                window.location.href = "/marketplace";
+            }
+            else{
+                this.setState({error_state:true})
+                setTimeout(function () {
+                    this.setState({ error_state: false });
+                  }.bind(this), 3000);
+            }
+        })
+        .catch((err) => {
+            this.setState({error_state:true})
+                setTimeout(function () {
+                    this.setState({ error_state: false });
+                  }.bind(this), 3000);
+        });
         this.setState({
             loyalty: 0
         })
     };
+    
     logOut = (e) => {
         /*const [username, setUsername] = React.useState('');
         const [password, setPassword] = React.useState('');*/
@@ -49,10 +91,6 @@ class Payment extends Component {
             if(json.status == 'success'){
             }
             else{
-                this.setState({error_state:true})
-                setTimeout(function () {
-                    this.setState({ error_state: false });
-                  }.bind(this), 3000);
             }
         })
         .catch((err) => {
@@ -74,9 +112,9 @@ class Payment extends Component {
             <div>
                 <div className="bg-red-500 relative shadow-lg w-full py-20 flex items-center text-white text-2xl justify-between">
                     <img className="w-full h-full object-cover absolute top-0 opacity-20" src={Food}/>
-                    <a className="z-10 px-20 hover:no-underline hover:text-white" href="/payment">Sepet</a>
-                    <a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/marketplace" >Geri</a>
-                    <a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/" onClick="return {this.logOut.bind(this)}" >Logout</a>
+                    <a className="z-10 px-20 hover:no-underline hover:text-white" href="/payment">Sepet</a>    
+                        <a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/marketplace" >Geri</a>
+                        <a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/" onClick="return {this.logOut.bind(this)}" >Logout</a>
                 </div>
                 <div className="w-full bg-gray-100 p-16 rounded-xl flex flex-wrap overflow-x-hidden justify-center gap-x-20">
                     
@@ -125,6 +163,7 @@ class Payment extends Component {
                     
 
                 </div>
+                
             </div>
 
 

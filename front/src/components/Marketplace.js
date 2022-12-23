@@ -57,7 +57,7 @@ class Marketplace extends Component {
               <Card 
                 key={food.menu_id}
                 food_obj={food}
-                menu_id={food.menu_id}
+                menu_id={food._id}
                 menu_name={food.menu_name} 
                 menu_desc={food.menu_name.split(" ")[1]}
                 menu_pr={food.price}

@@ -3,13 +3,17 @@ import Food from "../food.png"
 
 const options = [
     {
+        default:"Male"
+    },
+    {
         label: "Erkek",
         value: "Male"
     }, 
     {
         label: "Kadın",
         value: "Female"
-    }
+    },
+    
 ]
 
 class Register extends Component {
@@ -34,56 +38,48 @@ class Register extends Component {
         this.setState({
             first_name : e.target.value
         });
-        console.log(this.state.first_name)
     }
 
     onLastNameChange(e) {
         this.setState({
             last_name : e.target.value
         });
-        console.log(this.state.last_name)
     }
 
     onEmailChange(e) {
         this.setState({
             email : e.target.value
         });
-        console.log(this.state.email)
     }
 
     onUsernameChange(e) {
         this.setState({
             username : e.target.value
         });
-        console.log(this.state.username)
     }
 
     onPasswordChange(e) {
         this.setState({
             password : e.target.value
         });
-        console.log(this.state.password)
     }
     
     onGenderChange(e) {
         this.setState({
             gender : e.target.value
         });
-        console.log(this.state.gender)
     }
 
     onPhoneChange(e) {
         this.setState({
             phone_number : e.target.value
         });
-        console.log(this.state.phone_number)
     }
 
     onReferenceChange(e) {
         this.setState({
             reference : e.target.value
         });
-        console.log(this.state.reference)
     }
 
     register = (e) => {
@@ -136,6 +132,10 @@ class Register extends Component {
             }
         })
         .catch((err) => {
+            this.setState({error_state:true})
+                setTimeout(function () {
+                    this.setState({ error_state: false });
+                  }.bind(this), 3000);
             console.log(err);
         });
     
@@ -249,6 +249,8 @@ class Register extends Component {
                     </form>
                     <button type="submit" className="btn btn-danger btn-lg bg-[#d43d3d]" onClick={this.register.bind(this)}>Kayıt Ol</button>
                 </div>
+                <div></div>
+                {this.state.error_state? <div className="flex items-center justify-center  bg-[#d43d3d] w-3/4 md:w-1/3 text-xs md:text-base p-3 md:p-4 text-white font-semibold shadow-md rounded-md"> Hatalı referans Bilgisi</div> : null}
             </div>
 
         )
