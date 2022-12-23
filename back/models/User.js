@@ -33,10 +33,10 @@ const UserSchema = new Schema({
     type: String,
     required: [true, 'Please provide a phone_number'],
   },
-  id: {
-    type: String,
-    required: [true, 'Please provide a id'],
-  },
+  loyalty_card:{
+    type:Number,
+    default:0
+  }
   // orders:[{
   //   amount:{type:Number, required: [true, 'Please provide a id']},
   //   food:{type:Schema.Types.ObjectId,ref:"Food"}
@@ -46,7 +46,6 @@ const UserSchema = new Schema({
 UserSchema.pre('save', function(next) {
   const user = this;
   if (!user.isModified('password')) return next();
-
   bcrypt.genSalt(10, function(err, salt) {
       if (err) return next(err);
       bcrypt.hash(user.password, salt, function(err, hash) {

@@ -59,8 +59,9 @@ class Login extends Component {
             body:JSON.stringify(request)
         }).then((response) => response.json())
         .then(json => {
-            console.log("response:", json);
+            console.log("response:", json.data.loyalty_card);
             if(json.status == 'success'){
+                localStorage.setItem("loyalty_card",JSON.stringify(json.data.loyalty_card))
                 window.location.href = "/marketplace";
             }
             else{

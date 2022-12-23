@@ -3,20 +3,28 @@ const CustomError = require('../helpers/CustomError');
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 
-exports.register = async (req, res) => {
-  const { first_name,last_name,email, id, password, gender, username,phone_number } = req.body;
-  const user = await User.create({ first_name,last_name,email, id, password, gender, username,phone_number });
-  res.status(200).json({
-    success: true,
-    data: {
-      name: user.name,
-      surname: user.surname,
-      email: user.email,
-      id: user.id,
-      password: user.password,
-      username: user.username,
-    },
-  });
+exports.register = async (req, res,next) => {
+  const { first_name,last_name,email, password, gender,username,phone_number,reference } = req.body;
+  const referenceUser = await User.findOne({username:reference}).select('loyalty_card');
+  if(referenceUser){
+    referenceUser.loyalty_card +=10;
+    await referenceUser.save();
+    const user = await User.create({ first_name,last_name,email, password, gender, username,phone_number, loyalty_card:20}); 
+    res.status(200).json({
+      success: true,
+      data: {
+        name: user.name,
+        surname: user.surname,
+        email: user.email,
+        password: user.password,
+        username: user.username,
+        loyalty_card:user.loyalty_card,
+      },
+    });
+  }else{
+    res.status(400).send(JSON.stringify("Wrong reference username "));
+    return next(new CustomError('Please Check Your reference username', 400));
+  }
 };
 
 exports.login = async (req, res, next) => {
@@ -35,6 +43,7 @@ exports.login = async (req, res, next) => {
         data: {
           password: user.password,
           username: user.username,
+          loyalty_card:user.loyalty_card,
           id: req.session.userID,
         },
       }).send();

@@ -1,13 +1,13 @@
 const Order = require('../models/Order');
 const User = require('../models/User');
 
-exports.addFoodtoOrder = async (req, res) => {
+exports.giveOrder = async (req, res) => {
   try {
-    const { quantity,menu_id,order_id } = req.body;
+    const { count,id,price,loyalty} = req.body;
     const order= await Order.create({
         customer_id:req.session.userID,
-        order_status:"Preparing",
-        order_id
+        order_status:"Order Created",
+        foods:{menu_id:id,quantity:count},
     })
     await order.foods.push({menu_id:menu_id,amount:quantity})
     await order.save()

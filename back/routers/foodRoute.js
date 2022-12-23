@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.get('/',foodController.getFoods);
 router.post('/addFood',foodController.addFoodtoDatabase);
-router.post('/addFoodtoOrder',userController.addFoodtoOrder);
+// router.post('/addFoodtoOrder',userController.addFoodtoOrder);
 
 module.exports=router; 

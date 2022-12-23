@@ -12,7 +12,7 @@ class Payment extends Component {
             price: JSON.parse(localStorage.getItem("obj")).price,
             img: this.props.img,
             count: 1,
-            loyalty: 20,
+            loyalty: localStorage.getItem("loyalty_card"),
             showLoyalty: false
         };
     }
@@ -25,10 +25,41 @@ class Payment extends Component {
         this.setState({
             loyalty: 0
         })
-
-
-
     };
+    logOut = (e) => {
+        /*const [username, setUsername] = React.useState('');
+        const [password, setPassword] = React.useState('');*/
+        
+        e.preventDefault();
+        
+        var proxy = "http://localhost:5000/auth/logout"
+        //console.warn(username, password);
+        const headers = { 
+
+                'Accept': 'application.json',
+                'Content-Type': 'application/json'
+        
+        };
+        let result = fetch(proxy, {
+            method: "post",
+            headers: headers,
+        }).then((response) => response.json())
+        .then(json => {
+            console.log("response:", json.data.loyalty_card);
+            if(json.status == 'success'){
+            }
+            else{
+                this.setState({error_state:true})
+                setTimeout(function () {
+                    this.setState({ error_state: false });
+                  }.bind(this), 3000);
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    
+    }
        
 
 
@@ -44,7 +75,8 @@ class Payment extends Component {
                 <div className="bg-red-500 relative shadow-lg w-full py-20 flex items-center text-white text-2xl justify-between">
                     <img className="w-full h-full object-cover absolute top-0 opacity-20" src={Food}/>
                     <a className="z-10 px-20 hover:no-underline hover:text-white" href="/payment">Sepet</a>
-                    <a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/marketplace">Geri</a>
+                    <a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/marketplace" >Geri</a>
+                    <a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/" onClick="return {this.logOut.bind(this)}" >Logout</a>
                 </div>
                 <div className="w-full bg-gray-100 p-16 rounded-xl flex flex-wrap overflow-x-hidden justify-center gap-x-20">
                     

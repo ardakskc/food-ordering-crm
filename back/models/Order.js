@@ -25,10 +25,6 @@ const OrderSchema = new Schema({
         required: [true, 'Please provide a order status'],
         unique: true,
     },
-    order_id: {
-        type: String,
-        required: [true, 'Please provide a id'],
-    },
 },
 {timestamps:true});
 
