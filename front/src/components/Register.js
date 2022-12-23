@@ -1,6 +1,17 @@
 import React, {Component} from "react";
 import Food from "../food.png"
 
+const options = [
+    {
+        label: "Erkek",
+        value: "Male"
+    }, 
+    {
+        label: "Kadın",
+        value: "Female"
+    }
+]
+
 class Register extends Component {
 
     constructor(props) {
@@ -13,7 +24,8 @@ class Register extends Component {
             password: "",
             gender: "",
             phone_number: "",
-            id: this.props.state
+            reference: "",
+            error_state: false
         }
 
     }
@@ -67,11 +79,70 @@ class Register extends Component {
         console.log(this.state.phone_number)
     }
 
+    onReferenceChange(e) {
+        this.setState({
+            reference : e.target.value
+        });
+        console.log(this.state.reference)
+    }
 
+    register = (e) => {
+        this.setState({
+            first_name: e.target.value,
+            last_name: e.target.value,
+            email: e.target.value,
+            username: e.target.value,
+            password: e.target.value,
+            gender: e.target.value,
+            phone_number: e.target.value,
+            reference: e.target.value
+        });
+        e.preventDefault();
+        
+        var proxy = "http://localhost:5000/auth/register"
+        //console.warn(username, password);
+        console.log(this.state.username+this.state.password)
+        let request = { 
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            email: this.state.email,
+            username: this.state.username,
+            password: this.state.password,
+            gender: this.state.gender,
+            phone_number: this.state.phone_number,
+            reference: this.state.reference
+        };
+        const headers = { 
 
+                'Accept': 'application.json',
+                'Content-Type': 'application/json'
+        
+        };
+        let result = fetch(proxy, {
+            method: "post",
+            headers: headers,
+            body:JSON.stringify(request)
+        }).then((response) => response.json())
+        .then(json => {
+            console.log("response:", json);
+            if(json.status == 'success'){
+                window.location.href = "/marketplace";
+            }
+            else{
+                this.setState({error_state:true})
+                setTimeout(function () {
+                    this.setState({ error_state: false });
+                  }.bind(this), 3000);
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    
+    }
 
     render() {
-        const {first_name, last_name, email, username, password, gender, phone_number} = this.state;
+        const {first_name, last_name, email, username, password, gender, phone_number, reference} = this.state;
 
         return (
             <div className="card w-full h-full items-center justify-between flex flex-col min-h-screen">
@@ -144,11 +215,11 @@ class Register extends Component {
                                 />
                         </div>
                         <div className="form-group">
-                            <label for="gender">Cinsiyet</label>
-                            <select id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={this.onGenderChange.bind(this)}>
-                                <option value={gender}>Erkek</option>
-                                <option value={gender}>Kadın</option>
-                                <option value={gender} selected>Seç</option>
+                            <label htmlFor="gender">Cinsiyet</label>
+                            <select id="gender" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#fff] dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={this.onGenderChange.bind(this)}>
+                                {options.map((option) => (
+                                    <option value={option.value}>{option.label}</option>
+                                ))}
                             </select>
                         </div>
                         <div className="form-group">
@@ -163,7 +234,20 @@ class Register extends Component {
                                 onChange = {this.onPhoneChange.bind(this)}
                                 />
                         </div>
+                        <div className="form-group">
+                            <label htmlFor="reference">Referans</label>
+                            <input 
+                                type="reference" 
+                                name="reference" 
+                                id="reference" 
+                                placeholder="Referans Kullanıcı Adı" 
+                                className="form-control" 
+                                value={reference}
+                                onChange = {this.onReferenceChange.bind(this)}
+                                />
+                        </div>
                     </form>
+                    <button type="submit" className="btn btn-danger btn-lg bg-[#d43d3d]" onClick={this.register.bind(this)}>Kayıt Ol</button>
                 </div>
             </div>
 
