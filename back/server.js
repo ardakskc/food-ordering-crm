@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
-// const movieRoute = require('./routers/movieRoute');
+const foodRoute = require('./routers/foodRoute');
 // const userRoute = require('./routers/userRoute');
 // const pageRoute = require('./routers/pageRoute');
 const authRoute = require('./routers/authRoute');
@@ -10,7 +10,7 @@ const authRoute = require('./routers/authRoute');
 const app = express();
 
 mongoose
-  .connect('mongodb://127.0.0.1:27017/YemekSepetiDB', {
+  .connect('mongodb+srv://enes_bakir:FtDkNBEZDuTMZlbT@cluster0.mj2fd90.mongodb.net/YemekSepetiDB', {
     useNewUrlParser: true,
   })
   .then(() => {
@@ -39,7 +39,7 @@ app.use(session({
 }))
 
 // app.use('/',pageRoute);
-// app.use('/movies', movieRoute);
+ app.use('/foods', foodRoute);
 // app.use('/users', userRoute);
 app.use('/auth',authRoute);
 

@@ -1,42 +1,102 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
+    text-align: center;
+  }
+  
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    height: 40vmin;
+    pointer-events: none;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
   }
-  to {
-    transform: rotate(360deg);
+  
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
   }
-}
-
-.App-container {
-  margin:auto;
-}
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .img{
+    padding: 10px;
+    margin-top: 200px;
+  }
+  
+  .text {
+    margin-right: 50px;
+    margin-left: 15px;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .img-div {
+    float: left;
+  }
+  
+  .payment-div {
+    float: none; 
+    display: inline-block;
+    margin-left: 400px;
+  }
+  
+  .loyalty {
+   
+    display: flex;
+    width: 400px;
+    height: auto;
+    margin-top: 200px;
+  }
+  
+  .loyaltyText {
+    margin-top: 15px;
+  }
+  
+  .totalAmount {
+    width: 270px;
+    height: auto;
+    margin-top: 50px;
+  }
+  
+  .button {
+    outline: none;
+    border: none;
+    color: #fff;
+    background: #d43d3d;
+    padding: 5px 10px;
+    font-size: 23px;
+    border-radius: 5px;
+    margin-left: 10px;
+    z-index: 4;
+  }
+  .button2 {
+    outline: none;
+    border: none;
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+    background: #d43d3d;
+    padding: 5px 10px;
+    font-size: 23px;
+    border-radius: 5px;
+    z-index: 4;
+  }

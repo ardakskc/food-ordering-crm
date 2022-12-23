@@ -27,27 +27,25 @@ const UserSchema = new Schema({
   },
   gender: {
     type: String,
-    required: [true, 'Please provide a password'],
+    required: [true, 'Please provide a gender'],
   },
   phone_number: {
     type: String,
-    required: [true, 'Please provide a password'],
+    required: [true, 'Please provide a phone_number'],
   },
-  id: {
-    type: String,
-    required: [true, 'Please provide a password'],
-  },
-
-//   orders:[ {
-//     type: Schema.Types.ObjectId,
-//     ref: 'Movie',
-//   }],
+  loyalty_card:{
+    type:Number,
+    default:0
+  }
+  // orders:[{
+  //   amount:{type:Number, required: [true, 'Please provide a id']},
+  //   food:{type:Schema.Types.ObjectId,ref:"Food"}
+  // }]
 });
 
 UserSchema.pre('save', function(next) {
   const user = this;
   if (!user.isModified('password')) return next();
-
   bcrypt.genSalt(10, function(err, salt) {
       if (err) return next(err);
       bcrypt.hash(user.password, salt, function(err, hash) {
