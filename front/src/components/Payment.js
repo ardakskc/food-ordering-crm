@@ -11,7 +11,7 @@ class Payment extends Component {
             id: JSON.parse(localStorage.getItem("obj")).menu_id,
             price: JSON.parse(localStorage.getItem("obj")).price,
             img: this.props.img,
-            count: this.props.count,
+            count: 1,
             loyalty: 20,
             showLoyalty: false
         };
@@ -37,55 +37,62 @@ class Payment extends Component {
         const {img} = this.state;
         const {loyalty} = this.state;
         const {name} = this.state;
+        const {count} =this.state;
 
         return(
-
-            <div className="container">
-                
-                <div className="img-div p-10 mt-200">
-                    <div className="img">
-                        <img src={Food} alt="" />
-                    </div>
-
-                    <div className="text mr-50 ml-15 text-center display:inline-block">
-                        <text>
-                            Price: {price} tl
-                        </text>
-                    </div>
-
-                    <div className="text">
-                        <text>
-                            Number: {price} 
-                        </text>
-                    </div>
+            <div>
+                <div className="bg-red-500 relative shadow-lg w-full py-20 flex items-center text-white text-2xl justify-between">
+                    <img className="w-full h-full object-cover absolute top-0 opacity-20" src={Food}/>
+                    <a className="z-10 px-20 hover:no-underline hover:text-white" href="/payment">Sepet</a>
+                    <a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/marketplace">Geri</a>
                 </div>
-
-                <div className="payment-div">
-
-                    <div className="loyalty">
-                        <p className="loyaltyText">
-                            Loyalty Card Balance: {loyalty} tl
-                        </p>
-                        <button className="button" onClick={this.onDiscountButtonClickHandler.bind(this)}>
-                            Use Discount
-                        </button>
-                    </div>
-
-                    <div className="totalAmount">
-                        <p>Total Amount:</p>
-                        <p>_________{name}: {price} tl</p>
-                        {this.state.showLoyalty && <p>_________Loyalty Card Discount: {loyalty} tl</p>}
-                        {this.state.showLoyalty ? <p>_________Total: {Number(price) - Number(loyalty)} tl</p> : <p>_________Total: {price} tl</p>}
-                        <button className="button2 mt-10" onClick={this.onPayButtonClickHandler.bind(this)}>
-                            Pay
-                        </button>
-                    </div>
-
-
+                <div className="w-full bg-gray-100 p-16 rounded-xl flex flex-wrap overflow-x-hidden justify-center gap-x-20">
                     
-                </div>
-                
+                    <div className="flex flex-col gap-y-5 items-center rounded-lg bg-white p-16 border-2 border-[#d43d3d]">
+                        <div className="">
+                            <img src={Food} alt="" />
+                        </div>
 
+                        <div className="text-lg underline font-semibold">
+                            <text>
+                                Fiyat: {price} TL
+                            </text>
+                        </div>
+
+                        <div className="text-lg underline font-semibold">
+                            <text>
+                                Adet: {count} 
+                            </text>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col font-semibold gap-y-5 rounded-lg bg-white p-16 border-2 border-[#d43d3d]">
+
+                        <div className="flex flex-col items-center gap-y-5">
+                            <p className="text-lg ">
+                                Loyalty Kart Bakiyesi: {loyalty} TL
+                            </p>
+                            <button className="button2" onClick={this.onDiscountButtonClickHandler.bind(this)}>
+                                İndirim Kullan
+                            </button>
+                        </div>
+
+                        <div className="totalAmount text-lg  flex flex-col items-center gap-y-5">
+                            <p>Total Amount:</p>
+                            <p>{name}: {price} TL</p>
+                            {this.state.showLoyalty && <p>Loyalty Card Discount: {loyalty} TL</p>}
+                            {this.state.showLoyalty ? <p>Total: {Number(price) - Number(loyalty)} tl</p> : <p>Total: {price} TL</p>}
+                            <button className="button2" onClick={this.onPayButtonClickHandler.bind(this)}>
+                                Ödeme Yap
+                            </button>
+                        </div>
+
+
+                        
+                    </div>
+                    
+
+                </div>
             </div>
 
 

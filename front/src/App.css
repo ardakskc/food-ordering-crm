@@ -81,21 +81,20 @@
     outline: none;
     border: none;
     color: #fff;
-    background: rgb(207, 0, 0);
+    background: #d43d3d;
     padding: 5px 10px;
     font-size: 23px;
     border-radius: 5px;
     margin-left: 10px;
     z-index: 4;
   }
-
   .button2 {
     outline: none;
     border: none;
     color: #fff;
     display: inline-block;
     width: 100%;
-    background: rgb(207, 0, 0);
+    background: #d43d3d;
     padding: 5px 10px;
     font-size: 23px;
     border-radius: 5px;
