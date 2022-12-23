@@ -75,8 +75,10 @@ class Payment extends Component {
                 <div className="bg-red-500 relative shadow-lg w-full py-20 flex items-center text-white text-2xl justify-between">
                     <img className="w-full h-full object-cover absolute top-0 opacity-20" src={Food}/>
                     <a className="z-10 px-20 hover:no-underline hover:text-white" href="/payment">Sepet</a>
-                    <a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/marketplace" >Geri</a>
-                    <a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/" onClick="return {this.logOut.bind(this)}" >Logout</a>
+                    <ul className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold">
+                        <li ><a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/marketplace">Geri</a></li>
+                        <li onClick="return {this.logOut.bind(this)}" ><a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/">Logout</a></li>
+                    </ul>
                 </div>
                 <div className="w-full bg-gray-100 p-16 rounded-xl flex flex-wrap overflow-x-hidden justify-center gap-x-20">
                     

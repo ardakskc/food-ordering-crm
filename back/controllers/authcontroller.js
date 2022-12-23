@@ -22,8 +22,8 @@ exports.register = async (req, res,next) => {
       },
     });
   }else{
-    res.status(400).send(JSON.stringify("Wrong reference username "));
-    return next(new CustomError('Please Check Your reference username', 400));
+    res.status(300).send(JSON.stringify("Wrong reference username "));
+    return next(new CustomError('Please Check Your reference username', 300));
   }
 };
 
