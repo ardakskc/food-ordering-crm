@@ -2,8 +2,9 @@ import { render } from "@testing-library/react";
 import React, {Component} from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
-import ItemList from "./components/ItemList";
-import "./App.css";
+import Card from "./components/Card";
+import Marketplace from "./components/Marketplace";
+import Payment from "./components/Payment";
 
 class App extends Component {
   
@@ -16,7 +17,9 @@ class App extends Component {
           <BrowserRouter>
             <Routes>
               <Route path="/"element={<Login/>} />
-              <Route path="/itemlist"element={<ItemList/>} />
+              <Route path="/card"element={<Card/>} />
+              <Route path="/marketplace"element={<Marketplace/>} />
+              <Route path="/payment"element={<Payment/>} />
             </Routes>
           </BrowserRouter>
 
