@@ -49,9 +49,10 @@ class Marketplace extends Component {
             <img className="w-full h-full object-cover absolute top-0 opacity-20" src={Food}/>
             <a className="z-10 px-20 hover:no-underline hover:text-white" href="/marketplace">Yemek Listesi</a>
             <ul className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold">
-                        <li ><a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/Survey">Anket</a></li>
-                        <li onClick="return {this.logOut.bind(this)}" ><a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/">Logout</a></li>
-                    </ul>
+              <li><a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/account">Hesap Bilgileri</a></li>
+              <li ><a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/survey">Anket</a></li>
+              <li onClick="return {this.logOut.bind(this)}" ><a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/">Logout</a></li>
+            </ul>
           </div>
           </div>
         <div className="w-[95%] bg-gray-100 p-16 rounded-xl flex flex-wrap overflow-x-hidden">

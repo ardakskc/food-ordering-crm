@@ -7,6 +7,7 @@ import Marketplace from "./components/Marketplace";
 import Payment from "./components/Payment";
 import Register from "./components/Register";
 import Survey from "./components/Survey";
+import AccountInfo from "./components/AccountInfo";
 
 class App extends Component {
   
@@ -24,6 +25,7 @@ class App extends Component {
               <Route path="/payment"element={<Payment/>} />
               <Route path="/register"element={<Register/>} />
               <Route path="/survey"element={<Survey/>} />
+              <Route path="/account"element={<AccountInfo/>} />
             </Routes>
           </BrowserRouter>
 
