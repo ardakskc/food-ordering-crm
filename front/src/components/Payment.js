@@ -113,9 +113,9 @@ class Payment extends Component {
                 <div className="bg-red-500 relative shadow-lg w-full py-20 flex items-center text-white text-2xl justify-between">
                     <img className="w-full h-full object-cover absolute top-0 opacity-20" src={Food}/>
                     <a className="z-10 px-20 hover:no-underline hover:text-white" href="/payment">Sepet</a>
-                    <ul className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold">
-                        <li ><a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/marketplace">Geri</a></li>
-                        <li onClick="return {this.logOut.bind(this)}" ><a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/">Logout</a></li>
+                    <ul className="z-10 px-20 gap-x-5 hover:no-underline hover:text-white text-sm font-semibold flex">
+                        <li ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/marketplace">Geri</a></li>
+                        <li onClick="return {this.logOut.bind(this)}" ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/">Çıkış</a></li>
                     </ul>
                 </div>
                 <div className="w-full bg-gray-100 p-16 rounded-xl flex flex-wrap overflow-x-hidden justify-center gap-x-20">
@@ -150,10 +150,10 @@ class Payment extends Component {
                         </div>
 
                         <div className="totalAmount text-lg  flex flex-col items-center gap-y-5">
-                            <p>Total Amount:</p>
+                            <p>Toplam Tutar:</p>
                             <p>{name}: {price} TL</p>
-                            {this.state.showLoyalty && <p>Loyalty Card Discount: {loyalty} TL</p>}
-                            {this.state.showLoyalty ? <p>Total: {Number(price) - Number(loyalty)} tl</p> : <p>Total: {price} TL</p>}
+                            {this.state.showLoyalty && <p>Loyalty Kart İndirimi: {loyalty} TL</p>}
+                            {this.state.showLoyalty ? <p>Toplam: {Number(price) - Number(loyalty)} TL</p> : <p>Toplam: {price} TL</p>}
                             <button className="button2" onClick={this.onPayButtonClickHandler.bind(this)}>
                                 Ödeme Yap
                             </button>

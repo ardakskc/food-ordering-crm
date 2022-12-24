@@ -48,9 +48,9 @@ class AccountInfo extends Component {
         <div className="bg-red-500 relative shadow-lg w-full py-20 flex items-center text-white text-2xl justify-between">
             <img className="w-full h-full object-cover absolute top-0 opacity-20" src={Food}/>
             <h1 className='z-10 px-20'>Hesap Bilgileri</h1>
-            <ul className="z-10 hover:no-underline hover:text-white text-sm font-semibold">
-                <li ><a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/marketplace">Geri</a></li>
-                <li onClick="return {this.logOut.bind(this)}" ><a className="z-10 px-20 hover:no-underline hover:text-white text-sm font-semibold" href="/">Logout</a></li>
+            <ul className="z-10 px-20 gap-x-5 hover:no-underline hover:text-white text-sm font-semibold flex">
+                <li ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/marketplace">Geri</a></li>
+                <li onClick="return {this.logOut.bind(this)}" ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/">Çıkış</a></li>
             </ul>
         </div>
         <div className="my-auto items-center justify-center flex flex-col gap-y-5 rounded-lg bg-white p-16 border-2 border-[#d43d3d]">

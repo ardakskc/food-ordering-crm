@@ -92,31 +92,31 @@ class Login extends Component {
                 <span className="card-reader items-center justify-center font-bold text-[#d43d3d] border-b border-[#d43d3d] w-full text-center">Giriş Yap</span>
                     <form onSubmit = {this.onAddSubmit.bind(this)}>
                         <div className="form-group gap-y-5">
-                            <label htmlFor="name">Username</label>
+                            <label htmlFor="name">Kullanıcı Adı</label>
                             <input 
                                 type="text" 
                                 name="username" 
                                 id="username" 
-                                placeholder="Enter Username" 
+                                placeholder="Kullanıcı Adı Giriniz." 
                                 className="form-control" 
                                 value={username}
                                 onChange = {this.onUsernameChange.bind(this)}
                                 />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="email">Password</label>
+                            <label htmlFor="email">Şifre</label>
                             <input 
                                 type="password" 
                                 name="password" 
                                 id="password" 
-                                placeholder="Enter Password" 
+                                placeholder="Şifre Giriniz." 
                                 className="form-control" 
                                 value={password}
                                 onChange = {this.onPasswordChange.bind(this)}
                                 />
                         </div>
                     </form>
-                    <button type="submit" className="btn btn-danger btn-lg bg-[#d43d3d]" onClick={this.logIn.bind(this)}>Log In</button>
+                    <button type="submit" className="btn btn-danger btn-lg bg-[#d43d3d]" onClick={this.logIn.bind(this)}>Giriş</button>
                 </div>
                 <div></div>
                 {this.state.error_state? <div className="flex items-center justify-center bg-[#d43d3d] w-3/4 md:w-1/3 text-xs md:text-base p-3 md:p-4 text-white font-semibold shadow-md rounded-md"> Hatalı giriş yapıldı.</div> : null}
