@@ -12,6 +12,21 @@ exports.register = async (req, res,next) => {
     const user = await User.create({ first_name,last_name,email, password, gender, username,phone_number, loyalty_card:20}); 
     res.status(200).json({
       success: true,
+      status:'success',
+      data: {
+        name: user.name,
+        surname: user.surname,
+        email: user.email,
+        password: user.password,
+        username: user.username,
+        loyalty_card:user.loyalty_card,
+      },
+    });
+  }else if(reference==""){
+    const user = await User.create({ first_name,last_name,email, password, gender, username,phone_number}); 
+    res.status(200).json({
+      success: true,
+      status:'success',
       data: {
         name: user.name,
         surname: user.surname,
@@ -37,14 +52,13 @@ exports.login = async (req, res, next) => {
   }
   bcrypt.compare(password, user.password, (err, result) => {
     if (result) {
-      req.session.userID= user._id
       res.status(200).json({
         status: 'success',
         data: {
           password: user.password,
           username: user.username,
           loyalty_card:user.loyalty_card,
-          id: req.session.userID,
+          id: user._id,
         },
       }).send();
     } else {

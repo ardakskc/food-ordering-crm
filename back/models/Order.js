@@ -8,23 +8,26 @@ const OrderSchema = new Schema({
         ref:'User',
         required: [true,'Please provide a customer ıd'],
     },
-    foods:[{
+    foods:{
         menu_id: {
             type: Schema.Types.ObjectId,
             ref:'Food',
-            required: [true, 'Please provide a menuid'],
+            required: [true, 'Please provide a menu id'],
         },
         quantity: {
             type: Number,
             require: [true, 'Please provide a quentity'],
             unique: true,
         },
-    }],
+    },
     order_status: {
         type: String,
         required: [true, 'Please provide a order status'],
         unique: true,
     },
+    price:{
+        type:Number,
+    }
 },
 {timestamps:true});
 

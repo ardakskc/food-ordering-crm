@@ -3,16 +3,28 @@ const User = require('../models/User');
 
 exports.giveOrder = async (req, res) => {
   try {
-    const { count,id,price,loyalty} = req.body;
+    const { count,menu_id,price,loyalty,userID} = req.body;
+    const user = await User.findById({_id:userID});
+    if (!user) {
+      res.status(400).send(JSON.stringify("Please check your username."))
+      return next(new CustomError('Please Check Your username', 400));
+    }
     const order= await Order.create({
-        customer_id:req.session.userID,
-        order_status:"Order Created",
-        foods:{menu_id:id,quantity:count},
+      customer_id:userID,
+      order_status:"Order Created",
+      foods:{menu_id:menu_id,quantity:count},
+      price:price
     })
-    await order.foods.push({menu_id:menu_id,amount:quantity})
+
+    if(loyalty){
+      user.loyalty_card=0
+    }
+    user.loyalty_card+=Math.floor(price*0.02) 
+    await user.save()
     await order.save()
     res.json({ 
         status: 'success',
+        loyalty:user.loyalty_card,
         data:order
     });
   } catch (err) {
@@ -23,57 +35,19 @@ exports.giveOrder = async (req, res) => {
     });
   }
 };
+// exports.getUserInfo = async (req, res) => {
+//   try {
+//     const users = await User.find()
+//     res.status(200).json({
+//       status: 'success',
+//       users,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(400).json({
+//       status: 'fail',
+//       err,
+//     });
+//   }
+// };
 
-exports.getMovies = async (req, res) => {
-  try {
-    const movies = await Movie.find({vote_average:{$gt:6},vote_count:{$gt:5000}}).select('poster_path overview title vote_count').limit(5);
-    res.status(200).json({
-      status: 'success',
-      Movies:movies,
-      _pageName:'movies'
-    }); 
-  } catch (err) {
-    console.log(err);
-    res.status(400).json({
-      status: 'fail',
-      err,
-    });
-  }
-};
-
-
-exports.getMovie = async (req, res) => {
-  try {
-    const movie = await Movie.findById({ _id: req.params.id });
-    res.status(200).json({
-      data:movie,
-      status: 'success',
-      page_name: movie,
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(400).json({
-      status: 'fail',
-      err,
-    });
-  }
-};
-
-exports.getMoviesByGenre = async (req, res) => {
-  console.log(req.params.id);
-  try {
-    const movies = await Movie.find({
-      genres: { $elemMatch: { id: req.params.id } },
-    });
-    res.status(200).json({
-      status: 'success1234',
-      movies,
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(400).json({
-      status: 'fail',
-      err,
-    });
-  }
-};

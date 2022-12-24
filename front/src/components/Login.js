@@ -17,14 +17,12 @@ class Login extends Component {
         this.setState({
             username : e.target.value
         });
-        console.log(this.state.username)
     }
 
     onPasswordChange(e) {
         this.setState({
             password : e.target.value
         });
-        console.log(this.state.password)
     }
 
     onAddSubmit(e) {
@@ -42,7 +40,7 @@ class Login extends Component {
         
         var proxy = "http://localhost:5000/auth/login"
         //console.warn(username, password);
-        console.log(this.state.username+this.state.password)
+       
         let request = { 
             username: this.state.username,
             password: this.state.password
@@ -59,9 +57,10 @@ class Login extends Component {
             body:JSON.stringify(request)
         }).then((response) => response.json())
         .then(json => {
-            console.log("response:", json.data.loyalty_card);
+            console.log("response:", json.data.id);
             if(json.status == 'success'){
                 localStorage.setItem("loyalty_card",JSON.stringify(json.data.loyalty_card))
+                localStorage.setItem("session_userID",json.data.id)
                 window.location.href = "/marketplace";
             }
             else{
@@ -72,7 +71,10 @@ class Login extends Component {
             }
         })
         .catch((err) => {
-            console.log(err);
+            this.setState({error_state:true})
+                setTimeout(function () {
+                    this.setState({ error_state: false });
+                  }.bind(this), 3000);
         });
     
     }
