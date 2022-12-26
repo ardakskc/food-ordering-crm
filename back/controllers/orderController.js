@@ -1,5 +1,6 @@
 const Food = require('../models/Food');
 const User = require('../models/User');
+const Order = require('../models/Order');
 
 exports.getAllOrders = async (req, res) => {
   try {
@@ -20,11 +21,22 @@ exports.getAllOrders = async (req, res) => {
 
 exports.getBestCustomer = async (req, res) => {
     try {
-        const user = await User.findOne().sort('-loyalty_card').select('first_name last_name')
+        const customer_ids = await Order.find().distinct("customer_id");
+        const all_customer_ids = await Order.find();
+        let id
+        let max=1;
+
+        for(const customer_id of customer_ids){     
+            const countQuery = await Order.where({ customer_id: customer_id }).countDocuments();
+            if(countQuery>max){
+                id=customer_id;
+                max=countQuery;
+            }  
+        }
+        const user = await User.findById({_id:id}).select('first_name last_name')
         res.status(200).json({
             status: 'success',
-            Foods:foods,
-            _pageName:'foods'
+            user:user,
       }); 
     } catch (err) {
       console.log(err);
