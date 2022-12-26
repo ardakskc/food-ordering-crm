@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const foodRoute = require('./routers/foodRoute');
-// const userRoute = require('./routers/userRoute');
+const userRoute = require('./routers/userRoute');
 // const pageRoute = require('./routers/pageRoute');
 const authRoute = require('./routers/authRoute');
 
@@ -40,8 +40,8 @@ app.use(session({
 }))
 
 // app.use('/',pageRoute);
- app.use('/foods', foodRoute);
-// app.use('/users', userRoute);
+app.use('/foods', foodRoute);
+app.use('/user', userRoute);
 app.use('/auth',authRoute);
 
 const port = 5000;

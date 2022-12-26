@@ -25,7 +25,7 @@ class App extends Component {
               <Route path="/payment"element={<Payment/>} />
               <Route path="/register"element={<Register/>} />
               <Route path="/survey"element={<Survey/>} />
-              <Route path="/account"element={<AccountInfo/>} />
+              <Route path="/user/account"element={<AccountInfo/>} />
             </Routes>
           </BrowserRouter>
 

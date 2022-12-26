@@ -35,19 +35,20 @@ exports.giveOrder = async (req, res) => {
     });
   }
 };
-// exports.getUserInfo = async (req, res) => {
-//   try {
-//     const users = await User.find()
-//     res.status(200).json({
-//       status: 'success',
-//       users,
-//     });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(400).json({
-//       status: 'fail',
-//       err,
-//     });
-//   }
-// };
+
+exports.getUserInfo = async (req, res) => {
+  try {
+    const user = await User.findById({_id:req.params.id}).select('first_name last_name loyalty_card')
+    res.status(200).json({
+      status: 'success',
+      user:user,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      status: 'fail',
+      err,
+    });
+  }
+};
 

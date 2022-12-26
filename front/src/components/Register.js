@@ -122,7 +122,7 @@ class Register extends Component {
         .then(json => {
             console.log("response:", json);
             if(json.status == 'success'){
-                window.location.href = "/marketplace";
+                window.location.href = "/login";
             }
             else{
                 this.setState({error_state:true})
