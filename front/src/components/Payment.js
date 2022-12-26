@@ -63,9 +63,12 @@ class Payment extends Component {
                     this.setState({ error_state: false });
                   }.bind(this), 3000);
         });
-        this.setState({
-            loyalty: 0
-        })
+        if(this.state.showLoyalty){
+            this.setState({
+                loyalty: 0
+            })
+        }
+        
     };
     
     logOut = (e) => {
