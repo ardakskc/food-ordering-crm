@@ -37,5 +37,22 @@ exports.getFoods = async (req, res) => {
   }
 };
 
+exports.getAllOrders = async (req, res) => {
+  try {
+    const foods = await Food.find();
+    res.status(200).json({
+      status: 'success',
+      Foods:foods,
+      _pageName:'foods'
+    }); 
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      status: 'fail',
+      err,
+    });
+  }
+};
+
 
 

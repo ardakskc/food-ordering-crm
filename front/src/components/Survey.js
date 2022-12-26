@@ -32,8 +32,7 @@ class Survey extends Component {
             first_survey: "",
             second_survey: "",
             last_survey: "",
-            username: "",
-            password: "",
+            userID:localStorage.getItem("session_userID"),
             error_state: false
         }
 
@@ -50,53 +49,38 @@ class Survey extends Component {
         this.setState({
             second_survey : e.target.value
         });
-        console.log(this.state.second_survey)
+        console.log(String(this.state.second_survey))
     }
+
     onLastSurveyChange(e) {
         this.setState({
             last_survey : e.target.value
         });
-        console.log(this.state.second_survey)
-    }
-
-    onUsernameChange(e) {
-        this.setState({
-            username : e.target.value
-        });
-        console.log(this.state.username)
-    }
-
-    onPasswordChange(e) {
-        this.setState({
-            password : e.target.value
-        });
-        console.log(this.state.password)
+        console.log(this.state.last_survey)
     }
 
 
-    survey = (e) => {
+
+    sendSurvey = (e) => {
         this.setState({
             first_survey: e.target.value,
             second_survey: e.target.value,
             last_survey: e.target.value,
-            username: e.target.value,
-            password: e.target.value
         });
         e.preventDefault();
         
-        var proxy = "http://localhost:5000/survey"
+        var proxy = "http://localhost:5000/user/survey"
         //console.warn(username, password);
-        console.log(this.state.username+this.state.password)
+        
         let request = { 
-            username: this.state.username,
-            password: this.state.password,
-            first_survey: this.state.first_survey,
-            second_survey: this.state.second_survey,
-            last_survey: this.state.last_survey,
+            customer_id:this.state.userID,
+            question_one:this.state.first_survey,
+            question_two:this.state.second_survey,
+            question_three:"5",
         };
         const headers = { 
 
-                'Survey': 'application.json',
+                'Accept': 'application.json',
                 'Content-Type': 'application/json'
         
         };
@@ -107,7 +91,7 @@ class Survey extends Component {
         }).then((response) => response.json())
         .then(json => {
             console.log("response:", json);
-            if(json.status == 'success'){
+            if(json.status === 'success'){
                 window.location.href = "/marketplace";
             }
             else{
@@ -164,7 +148,7 @@ class Survey extends Component {
                                 
                         </div>
                     </form>
-                    <button type="submit" className="btn btn-danger btn-lg bg-[#d43d3d]" onClick={this.survey.bind(this)}>Anketi Gönder</button>
+                    <button type="submit" className="btn btn-danger btn-lg bg-[#d43d3d]" onClick={this.sendSurvey.bind(this)}>Anketi Gönder</button>
                 </div>
             </div>
 
