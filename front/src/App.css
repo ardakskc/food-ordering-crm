@@ -103,3 +103,16 @@
   .ul-head{
       list-style-type:none;
   }
+
+.button3 {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.on {
+  color: #000;
+}
+.off {
+  color: #ccc;
+}
