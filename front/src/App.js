@@ -8,6 +8,7 @@ import Payment from "./components/Payment";
 import Register from "./components/Register";
 import Survey from "./components/Survey";
 import AccountInfo from "./components/AccountInfo";
+import Statistic from "./components/Statistic";
 import Review from "./components/Review";
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
               <Route path="/register"element={<Register/>} />
               <Route path="/survey"element={<Survey/>} />
               <Route path="/user/account"element={<AccountInfo/>} />
+              <Route path="/statistic"element={<Statistic/>} />
               <Route path="/review"element={<Review/>} />
             </Routes>
           </BrowserRouter>
