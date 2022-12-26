@@ -51,6 +51,7 @@ class Marketplace extends Component {
             <ul className="z-10 px-20 gap-x-5 hover:no-underline hover:text-white text-sm font-semibold flex">
               <li><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/user/account">Hesap Bilgileri</a></li>
               <li ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/survey">Anket</a></li>
+              <li ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/statistic">İstatistikler</a></li>
               <li onClick="return {this.logOut.bind(this)}" ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/">Çıkış</a></li>
             </ul>
           </div>
