@@ -22,7 +22,7 @@ exports.addFoodtoDatabase = async (req, res) => {
 
 exports.getFoods = async (req, res) => {
   try {
-    const foods = await Food.find();
+    const foods = await Food.find().sort('menu_name');
     res.status(200).json({
       status: 'success',
       Foods:foods,

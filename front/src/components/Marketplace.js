@@ -52,7 +52,7 @@ class Marketplace extends Component {
               <li><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/user/account">Hesap Bilgileri</a></li>
               <li ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/survey">Anket</a></li>
               <li ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/statistic">İstatistikler</a></li>
-              <li ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/review">Değerlendirme</a></li>
+              <li ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/user/review">Değerlendirme</a></li>
               <li onClick={() => this.logOut.bind(this)} ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/">Çıkış</a></li>
             </ul>
           </div>
@@ -64,6 +64,7 @@ class Marketplace extends Component {
               <Card 
                 key={food.menu_id}
                 food_obj={food}
+                img={food.image_url}
                 menu_id={food._id}
                 menu_name={food.menu_name} 
                 menu_desc={food.menu_name.split(" ")[1]}

@@ -13,7 +13,10 @@ const FoodSchema = new Schema({
   price:{
     type:Number,
     required:[true,'Pleae provide a price'],
-  }
+  },
+  image_url:{
+    type:"String",
+  },
 
 //   orders:[ {
 //     type: Schema.Types.ObjectId,

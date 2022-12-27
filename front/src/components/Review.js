@@ -40,9 +40,9 @@ class Review extends Component {
 
     }
 
-    handleRating = (rate) => {
+    handleRating = (e) => {
         this.setState({
-            rating:rate
+            rating:e.target.value
         });
         
     };
@@ -53,17 +53,43 @@ class Review extends Component {
         });
     };
 
-    onSubmit = (e) => {        
-        this.setState({confirm_state:true})
-                setTimeout(function () {
-                    this.setState({ confirm_state: false });
-                    this.setState({
-                        textValue: "",
-                        rating:0
-                    })
-                    window.location.reload();
-                    window.location.href = "/marketplace";
-                  }.bind(this), 3000);
+    onSubmit = (e) => {   
+        
+        var proxy = "http://localhost:5000/user/review"
+
+        let request = { 
+            textValue: this.state.textValue,
+            rating:this.state.rating
+        };
+        console.log(request)
+        const headers = { 
+                'Accept': 'application.json',
+                'Content-Type': 'application/json'
+        
+        };
+        let result = fetch(proxy, {
+            method: "post",
+            headers: headers,
+            body:JSON.stringify(request)
+        }).then((response) => response.json())
+        .then(json => {
+            if(json.status ==='success'){
+                this.setState({confirm_state:true})
+                    setTimeout(function () {
+                        this.setState({ confirm_state: false });
+                        window.location.reload();
+                        window.location.href = "/marketplace";
+                    }.bind(this), 3000);
+            }
+            else{
+                console.log("Değerlendirme Gönderilemedi.")
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            console.log("Değerlendirme Gönderilemedi")
+        });
+
     };
 
     render() {

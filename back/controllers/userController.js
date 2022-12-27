@@ -1,6 +1,7 @@
 const Order = require('../models/Order');
 const User = require('../models/User');
 const SurveyResult = require('../models/SurveyResult')
+const Review = require('../models/Review')
 exports.giveOrder = async (req, res) => {
   try {
     const { count,menu_id,price,loyalty,userID} = req.body;
@@ -82,6 +83,23 @@ exports.getGreatestLoyaltyUser = async (req, res) => {
     res.status(200).json({
       status: 'success',
       user,
+    });
+  }catch (err) {
+    console.log(err);
+    res.status(400).json({
+      status: 'fail',
+      err,
+    });
+  }
+};
+
+exports.addReview = async (req, res) => {
+  try {
+    const {rating,textValue} = req.body;
+    const review = await Review.create({rating,textValue})
+    res.status(200).json({
+      status: 'success',
+      review,
     });
   }catch (err) {
     console.log(err);

@@ -29,7 +29,7 @@ class App extends Component {
               <Route path="/survey"element={<Survey/>} />
               <Route path="/user/account"element={<AccountInfo/>} />
               <Route path="/statistic"element={<Statistic/>} />
-              <Route path="/review"element={<Review/>} />
+              <Route path="/user/review"element={<Review/>} />
             </Routes>
           </BrowserRouter>
 

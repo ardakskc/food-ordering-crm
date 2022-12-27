@@ -16,7 +16,7 @@ class Card extends Component {
         <div className="py-4 flex flex-col items-center justify-between w-full h-full">
 
        
-        <img src={Food} className="w-48 h-32 bg-black rounded-2xl " />
+        <img src={this.props.img} className="w-48 h-32 bg-black rounded-2xl " />
         <span className="font-semibold">{this.props.menu_name}</span>
         <span className="text-xs">{this.props.menu_desc}</span>
         <div className="border border-gray-700 w-4/5"></div>
