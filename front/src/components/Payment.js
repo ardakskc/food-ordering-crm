@@ -14,7 +14,8 @@ class Payment extends Component {
             count: 1,
             loyalty: localStorage.getItem("loyalty_card"),
             showLoyalty: false,
-            userID:localStorage.getItem("session_userID")
+            userID:localStorage.getItem("session_userID"),
+            confirm_state:false
         };
     }
 
@@ -48,20 +49,21 @@ class Payment extends Component {
         .then(json => {
             if(json.status == 'success'){
                 localStorage.setItem("loyalty_card",JSON.stringify(json.loyalty))
-                window.location.href = "/marketplace";
+                this.setState({confirm_state:true})
+                    setTimeout(function () {
+                        this.setState({ confirm_state: false });
+
+                        window.location.reload();
+                        window.location.href = "/marketplace";
+                    }.bind(this), 3000);
             }
             else{
-                this.setState({error_state:true})
-                setTimeout(function () {
-                    this.setState({ error_state: false });
-                  }.bind(this), 3000);
+                console.log("Ödeme başarısız.")
             }
         })
         .catch((err) => {
-            this.setState({error_state:true})
-                setTimeout(function () {
-                    this.setState({ error_state: false });
-                  }.bind(this), 3000);
+            console.log(err);
+            console.log("Ödeme başarısız.")
         });
         if(this.state.showLoyalty){
             this.setState({
@@ -112,7 +114,7 @@ class Payment extends Component {
         const {count} =this.state;
 
         return(
-            <div>
+            <div className="flex flex-col items-center justify-center">
                 <div className="bg-red-500 relative shadow-lg w-full py-20 flex items-center text-white text-2xl justify-between">
                     <img className="w-full h-full object-cover absolute top-0 opacity-20" src={Food}/>
                     <a className="z-10 px-20 hover:no-underline hover:text-white" href="/payment">Sepet</a>
@@ -121,7 +123,7 @@ class Payment extends Component {
                         <li onClick="return {this.logOut.bind(this)}" ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/">Çıkış</a></li>
                     </ul>
                 </div>
-                <div className="w-full bg-gray-100 p-16 rounded-xl flex flex-wrap overflow-x-hidden justify-center gap-x-20">
+                <div className="w-full bg-gray-100 p-16 rounded-xl flex flex-wrap overflow-x-hidden items-center justify-center gap-x-20">
                     
                     <div className="flex flex-col gap-y-5 items-center rounded-lg bg-white p-16 border-2 border-[#d43d3d]">
                         <div className="">
@@ -166,9 +168,8 @@ class Payment extends Component {
                         
                     </div>
                     
-
                 </div>
-                
+                {this.state.confirm_state? <div className="flex items-center justify-center bg-green-500 w-3/4 md:w-1/3 text-xs md:text-base p-3 md:p-4 text-white font-semibold shadow-md rounded-md"> Siparişiniz alındı.</div> : null}
             </div>
 
 
