@@ -9,7 +9,8 @@ class Statistic extends Component {
         this.state = {
             loyalty_user:{},
             best_user: {},
-            best_food: {}
+            best_food: {},
+            worst_user: {}
         }
     }
 
@@ -20,6 +21,7 @@ class Statistic extends Component {
         var proxyLoyalty = "http://localhost:5000/user/getGreatest"
         var proxyBest = "http://localhost:5000/user/getBestCustomer"
         var proxyFood = "http://localhost:5000/user/getBestFood"
+        var proxyWorst = "http://localhost:5000/user/getWorstCustomer"
 
         
         const headers = {
@@ -62,7 +64,7 @@ class Statistic extends Component {
             console.log("error: ",err);
         });
 
-        //get best customer
+        //get best food
         fetch(proxyFood,{
             method: "get",
             headers: headers,
@@ -80,6 +82,23 @@ class Statistic extends Component {
             console.log("error: ",err);
         });
         
+        //get worst customer
+        fetch(proxyWorst,{
+            method: "get",
+            headers: headers,
+        }).then((response) => response.json())
+        .then(json=>{
+            console.log("response:",json);
+            this.setState({
+                worst_user:json.user,
+            });
+            console.log(this.state.worst_user);
+            
+            //status kullanılabilir
+        })
+        .catch((err) => {
+            console.log("error: ",err);
+        });
 
         
     }
@@ -101,13 +120,13 @@ class Statistic extends Component {
                     En İyi Müşteri: <span className='font-normal'>{this.state.best_user.first_name+" "+this.state.best_user.last_name}</span>
                 </li>
                 <li className='border p-2'>
-                    En Az İlgili Müşteri: <span className='font-normal'>Boş</span>
+                    En Az İlgili Müşteri: <span className='font-normal'>{this.state.worst_user.first_name+" "+this.state.worst_user.last_name}</span>
                 </li>
                 <li className='border p-2'>
                     En Fazla Loyalt Bakiyesine Sahip Müşteri: <span className='font-normal'>{this.state.loyalty_user.first_name+" "+this.state.loyalty_user.last_name}</span>
                 </li>
                 <li className='border p-2'>
-                    En Çok Satılan Ürün: <span className='font-normal'>Bos</span>
+                    En Çok Satılan Ürün: <span className='font-normal'>{this.state.best_food.menu_name}</span>
                 </li>
             </ul>
         </div>

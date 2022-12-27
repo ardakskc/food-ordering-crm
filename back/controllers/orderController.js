@@ -50,12 +50,15 @@ exports.getBestCustomer = async (req, res) => {
   exports.getBestFood = async (req, res) => {
     try {
         const foods = await Order.find().distinct("foods");
-        const food_ids = foods.menu_id;
+        let food_ids = [];
+        for(tmp of foods){
+          food_ids.push(tmp.menu_id)
+        }
         let id
         let max=1;
 
         for(const food_id of food_ids){     
-            const countQuery = await Order.where({ menu_id: food_id }).countDocuments();
+            const countQuery = await Order.where({ "foods.menu_id": food_id }).countDocuments();
             if(countQuery>max){
                 id=food_id;
                 max=countQuery;
@@ -71,8 +74,34 @@ exports.getBestCustomer = async (req, res) => {
       res.status(400).json({
         status: 'fail',
         err,
-      });
+      }).send();
     }
   };
 
+  exports.getWorstCustomer = async (req, res) => {
+    try {
+        const customer_ids = await Order.find().distinct("customer_id");
+        let id
+        let min=10000;
+
+        for(const customer_id of customer_ids){     
+            const countQuery = await Order.where({ customer_id: customer_id }).countDocuments();
+            if(countQuery<min){
+                id=customer_id;
+                min=countQuery;
+            }  
+        }
+        const user = await User.findById({_id:id}).select('first_name last_name')
+        res.status(200).json({
+            status: 'success',
+            user:user,
+      }); 
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({
+        status: 'fail',
+        err,
+      });
+    }
+  };
 
