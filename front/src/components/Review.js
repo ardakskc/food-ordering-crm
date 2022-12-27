@@ -36,7 +36,8 @@ class Review extends Component {
         super(props);
         this.state = {
             rating: 0,
-            textValue: ""
+            textValue: "",
+            confirm_state: false
         };
 
     }
@@ -54,22 +55,30 @@ class Review extends Component {
         });
     };
 
-    onSubmit = (e) => {
-        this.setState({
-            textValue: ""
-        })
+    onSubmit = (e) => {        
+        this.setState({confirm_state:true})
+                setTimeout(function () {
+                    this.setState({ confirm_state: false });
+                    this.setState({
+                        textValue: "",
+                        rating:0
+                    })
+                    window.location.reload();
+                    window.location.href = "/marketplace";
+                  }.bind(this), 3000);
     };
 
     render() {
         const {textValue} = this.state;
         return(
             
-            <div className="card w-full h-full items-center justify-between flex flex-col ">
+            <div className="card w-full h-full items-center justify-between flex flex-col gap-y-5">
                 <div className="bg-red-500 relative shadow-lg w-full py-20 flex items-center text-white text-2xl justify-between">
                     <img className="w-full h-full object-cover absolute top-0 opacity-20" src={Food}/>
                     <a className="z-10 px-20 hover:no-underline hover:text-white font-bold" href="/">Yemeksepeti</a>
                 </div> 
-                <div className=" items-center justify-center flex flex-col gap-y-5 rounded-lg bg-white p-16 border-2 border-[#d43d3d]">
+                <div className="h-full w-full flex flex-col items-center justify-center gap-y-5">
+                    <div className=" items-center justify-center flex flex-col gap-y-5 rounded-lg bg-white p-16 border-2 border-[#d43d3d]">
                 
                     <h3>Dilek/Şikayet</h3>
                     <textarea
@@ -92,7 +101,11 @@ class Review extends Component {
 
                     <button type="submit" className="btn btn-danger btn-lg bg-[#d43d3d]" onClick={this.onSubmit.bind(this)}>Gönder</button>
 
+                    </div>
+                    {this.state.confirm_state? <div className="flex items-center justify-center bg-[#d43d3d] w-3/4 md:w-1/3 text-xs md:text-base p-3 md:p-4 text-white font-semibold shadow-md rounded-md"> Geri bildiriminiz gönderildi.</div> : null}
+
                 </div>
+                
                 
                 
             </div>
