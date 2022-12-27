@@ -7,6 +7,8 @@ const router = express.Router();
 router.get('/account/:id',userController.getUserInfo);
 router.post('/survey',userController.addSurvey);
 router.get('/getGreatest',userController.getGreatestLoyaltyUser);
-router.get('/getBestCustomer',orderController.getBestCustomer)
+router.get('/getBestCustomer',orderController.getBestCustomer);
+router.get('/getBestFood',orderController.getBestFood);
+
 
 module.exports=router;

@@ -47,4 +47,32 @@ exports.getBestCustomer = async (req, res) => {
     }
   };
 
+  exports.getBestFood = async (req, res) => {
+    try {
+        const foods = await Order.find().distinct("foods");
+        const food_ids = foods.menu_id;
+        let id
+        let max=1;
+
+        for(const food_id of food_ids){     
+            const countQuery = await Order.where({ menu_id: food_id }).countDocuments();
+            if(countQuery>max){
+                id=food_id;
+                max=countQuery;
+            }  
+        }
+        const food = await Food.findById({_id:id}).select('menu_name')
+        res.status(200).json({
+            status: 'success',
+            food:food,
+      }); 
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({
+        status: 'fail',
+        err,
+      });
+    }
+  };
+
 
