@@ -117,7 +117,7 @@ class Survey extends Component {
                     <a className="z-10 px-20 hover:no-underline hover:text-white font-bold" href="/">Yemeksepeti</a>
                     <ul className="z-10 px-20 gap-x-5 hover:no-underline hover:text-white text-sm font-semibold flex">
                         <li ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/marketplace">Geri</a></li>
-                        <li onClick="return {this.logOut.bind(this)}" ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/">Çıkış</a></li>
+                        <li onClick={() => this.logOut.bind(this)} ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/">Çıkış</a></li>
                     </ul>
                 </div>
 
@@ -143,8 +143,11 @@ class Survey extends Component {
                         <div className="form-group">
                             <label htmlFor="last_survey">Biz sizi ne kadar seviyoruz?</label>
                                 <br></br>
-                                <input type="radio" id="html" name="fav_language" value="HTML" onChange={this.onLastSurveyChange.bind(this)}></input>
-                                <label for="html">5</label>
+                                <select id="second_survey" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#fff] dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={this.onLastSurveyChange.bind(this)}>
+                                {options.map((option) => (
+                                    <option value={option.value}>{option.label}</option>
+                                ))}
+                                </select>
                                 
                         </div>
                     </form>
