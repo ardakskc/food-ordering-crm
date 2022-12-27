@@ -53,7 +53,7 @@ class Marketplace extends Component {
               <li ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/survey">Anket</a></li>
               <li ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/statistic">İstatistikler</a></li>
               <li ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/review">Değerlendirme</a></li>
-              <li onClick="return {this.logOut.bind(this)}" ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/">Çıkış</a></li>
+              <li onClick={() => this.logOut.bind(this)} ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/">Çıkış</a></li>
             </ul>
           </div>
           </div>

@@ -120,7 +120,7 @@ class Payment extends Component {
                     <a className="z-10 px-20 hover:no-underline hover:text-white" href="/payment">Sepet</a>
                     <ul className="z-10 px-20 gap-x-5 hover:no-underline hover:text-white text-sm font-semibold flex">
                         <li ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/marketplace">Geri</a></li>
-                        <li onClick="return {this.logOut.bind(this)}" ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/">Çıkış</a></li>
+                        <li onClick={() => this.logOut.bind(this)} ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/">Çıkış</a></li>
                     </ul>
                 </div>
                 <div className="w-full bg-gray-100 p-16 rounded-xl flex flex-wrap overflow-x-hidden items-center justify-center gap-x-20">
