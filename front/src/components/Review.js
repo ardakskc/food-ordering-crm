@@ -28,8 +28,6 @@ const options = [
     
 ]
 
-let commentCounter = 1;
-
 class Review extends Component {
 
     constructor(props) {
@@ -58,6 +56,7 @@ class Review extends Component {
         this.setState({
             textValue: ""
         })
+        window.location.reload();
     };
 
     render() {
