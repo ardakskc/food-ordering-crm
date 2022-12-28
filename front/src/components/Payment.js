@@ -116,7 +116,7 @@ class Payment extends Component {
         return(
             <div className="flex flex-col items-center justify-center">
                 <div className="bg-red-500 relative shadow-lg w-full py-20 flex items-center text-white text-2xl justify-between">
-                    <img className="w-full h-full object-cover absolute top-0 opacity-20" src={img}/>
+                    <img className="w-full h-full object-cover absolute top-0 opacity-20" src={Food}/>
                     <a className="z-10 px-20 hover:no-underline hover:text-white" href="/payment">Sepet</a>
                     <ul className="z-10 px-20 gap-x-5 hover:no-underline hover:text-white text-sm font-semibold flex">
                         <li ><a className="z-10 hover:no-underline hover:text-white text-sm font-semibold" href="/marketplace">Geri</a></li>
