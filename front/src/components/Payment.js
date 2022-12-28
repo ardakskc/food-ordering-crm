@@ -127,7 +127,7 @@ class Payment extends Component {
                     
                     <div className="flex flex-col gap-y-5 items-center rounded-lg bg-white p-16 border-2 border-[#d43d3d]">
                         <div className="">
-                            <img src={img} alt="" />
+                            <img className="object-cover h-48 w-96" src={img} alt="" />
                         </div>
 
                         <div className="text-lg underline font-semibold">

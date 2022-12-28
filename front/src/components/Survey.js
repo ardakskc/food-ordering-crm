@@ -125,7 +125,7 @@ class Survey extends Component {
                     <span className="card-reader items-center justify-center font-bold text-[#d43d3d] border-b border-[#d43d3d] w-full text-center">Memnuniyet Anketi</span>
                     <form>
                         <div className="form-group">
-                            <label htmlFor="first_survey">Bizi ne kadar seviyorsunuz?</label>
+                            <label htmlFor="first_survey">Hizmetlerimizi kalite standartları çerçevesinde değerlendirdiğinizde 'Hız' için kaç puan verirsiniz?</label>
                             <select id="first_survey" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#fff] dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={this.onFirstSurveyChange.bind(this)}>
                                 {options.map((option) => (
                                     <option value={option.value}>{option.label}</option>
@@ -133,7 +133,7 @@ class Survey extends Component {
                             </select>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="second_survey">Yemeklerimizi ne kadar seviyorsunuz?</label>
+                            <label htmlFor="second_survey">Hizmetlerimizi kalite standartları çerçevesinde değerlendirdiğinizde 'Lezzet' için kaç puan verirsiniz?</label>
                             <select id="second_survey" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#fff] dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={this.onSecondSurveyChange.bind(this)}>
                                 {options.map((option) => (
                                     <option value={option.value}>{option.label}</option>
@@ -141,7 +141,7 @@ class Survey extends Component {
                             </select>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="last_survey">Biz sizi ne kadar seviyoruz?</label>
+                            <label htmlFor="last_survey">Hizmetlerimizi kalite standartları çerçevesinde değerlendirdiğinizde 'Servis' için kaç puan verirsiniz?</label>
                                 <br></br>
                                 <select id="second_survey" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#fff] dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={this.onLastSurveyChange.bind(this)}>
                                 {options.map((option) => (
